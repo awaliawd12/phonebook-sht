@@ -12,7 +12,7 @@ export default function Home() {
   const itemsPerPage = 10;
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowWelcome(false), 3000);
+    const timer = setTimeout(() => setShowWelcome(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
