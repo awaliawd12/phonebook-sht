@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Search, Phone, Building2, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, Phone, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Home() {
   const [showWelcome, setShowWelcome] = useState(true);
@@ -17,21 +17,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    fetch('https://script.google.com/macros/s/AKfycbwZBh4_FN_JblwLmpcz_BHl2ttcvnVgyFG62Ovlcj-j6ZV7uX7WkAvan0shqA4weL-D/exec')
+    fetch('https://script.google.com/macros/s/AKfycbxvadYA4xWB5M8kyY1UDcXdQbEMkiaVk_2updxeQweRkZv7RRJ3uCuTXpQIxcD_HO1PWA/exec')
       .then((res) => res.json())
       .then((data) => { setData(data); setLoading(false); });
   }, []);
 
-  const getGreeting = () => {
-    const hour = new Date().getHours();
-    if (hour >= 5 && hour < 12) return "Selamat Pagi";
-    if (hour >= 12 && hour < 15) return "Selamat Siang";
-    if (hour >= 15 && hour < 18) return "Selamat Sore";
-    return "Selamat Malam";
-  };
-
-  // Filter & Paginasi
-  const filteredData = data.filter(item => item['Ruangan']?.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredData = data.filter(item => item['Bagian']?.toLowerCase().includes(searchTerm.toLowerCase()));
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const paginatedData = filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
@@ -44,8 +35,8 @@ export default function Home() {
             <Phone size={48} className="text-blue-600" />
           </div>
         </div>
-        <h1 className="text-4xl font-black mb-3 text-blue-950">Phonebook</h1>
-        <p className="text-blue-600 font-medium">Menghubungkan ke direktori internal...</p>
+        <h1 className="text-3xl font-black mb-3 text-blue-950">Data Buku Telepon</h1>
+        <p className="text-blue-600 font-medium">Memuat data terbaru untuk Anda...</p>
         <Loader2 size={24} className="animate-spin text-blue-500 mt-8" />
       </main>
     );
@@ -54,13 +45,25 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-blue-50 p-4 md:p-10 font-sans">
       <div className="max-w-3xl mx-auto">
-        <header className="bg-blue-900 text-white p-8 rounded-[2rem] shadow-xl shadow-blue-200 mb-8 flex items-center gap-4">
-          <div className="bg-white/10 p-4 rounded-2xl">
-            <Building2 size={24} />
+        <header className="bg-blue-900 text-white p-8 rounded-[2rem] shadow-2xl shadow-blue-200 mb-8 relative overflow-hidden">
+          <div className="flex items-center gap-3 mb-6 absolute top-6 left-8">
+            <div className="bg-white p-1 rounded-lg">
+              <img 
+                src="/logo.jpeg" 
+                alt="Logo PLN" 
+                className="w-6 h-6 object-contain" 
+              />
+            </div>
+            <span className="text-[10px] font-bold tracking-[0.2em] text-blue-200 uppercase">
+              PLN INDONESIA POWER
+            </span>
           </div>
-          <div>
-            <h1 className="text-2xl font-black">{getGreeting()}, Rekan!</h1>
-            <p className="text-blue-200 text-sm">Cari dan hubungi ruangan kantor yang Anda tuju.</p>
+
+          {/* Judul Utama dengan ukuran yang lebih proporsional */}
+          <div className="text-center mt-6">
+            <h1 className="text-xl md:text-xl font-black text-white tracking-wide">
+              DATA BUKU TELEPON KANTOR
+            </h1>
           </div>
         </header>
 
@@ -68,7 +71,7 @@ export default function Home() {
           <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
           <input
             type="text"
-            placeholder="Cari nama ruangan..."
+            placeholder="Cari nama bagian..."
             className="w-full pl-14 pr-6 py-5 rounded-[2rem] border-0 shadow-lg shadow-blue-100 focus:ring-4 focus:ring-blue-200 outline-none transition-all bg-white text-blue-950 placeholder:text-blue-300"
             onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
           />
@@ -78,16 +81,15 @@ export default function Home() {
           <div className="grid gap-4">
             {paginatedData.map((item, index) => (
               <div key={index} className="bg-white p-6 rounded-[2rem] shadow-sm border border-blue-50 flex items-center justify-between hover:shadow-md hover:border-blue-100 transition-all">
-                <h3 className="font-bold text-blue-950">{item['Ruangan']}</h3>
+                <h3 className="font-bold text-blue-950">{item['Bagian']}</h3>
                 <div className="bg-blue-50 text-blue-700 px-6 py-3 rounded-2xl font-black flex items-center gap-2">
-                  <Phone size={16} /> {item['No Telepon']}
+                  <Phone size={16} /> {item['Ekstension']}
                 </div>
               </div>
             ))}
           </div>
         )}
 
-        {/* Paginasi Tetap Ada */}
         <div className="flex justify-center items-center gap-4 mt-10">
           <button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} className="p-3 rounded-full bg-white shadow-md disabled:opacity-30 text-blue-600">
             <ChevronLeft size={20} />
