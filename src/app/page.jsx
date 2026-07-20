@@ -17,7 +17,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    fetch('https://script.google.com/macros/s/AKfycbxvadYA4xWB5M8kyY1UDcXdQbEMkiaVk_2updxeQweRkZv7RRJ3uCuTXpQIxcD_HO1PWA/exec')
+    fetch('https://script.google.com/macros/s/AKfycbysTcnJgcKr8b2O7b3ARlDaPCYRKEfH72ZLOZK-G5VDPvedSD-VM8XK8FtS-CujXMsJzg/exec')
       .then((res) => res.json())
       .then((data) => { setData(data); setLoading(false); });
   }, []);
