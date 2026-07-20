@@ -59,9 +59,8 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Judul Utama dengan ukuran yang lebih proporsional */}
           <div className="text-center mt-6">
-            <h1 className="text-xl md:text-xl font-black text-white tracking-wide">
+            <h1 className="text-base md:text-lg font-black text-white tracking-wide">
               DATA BUKU TELEPON KANTOR
             </h1>
           </div>
