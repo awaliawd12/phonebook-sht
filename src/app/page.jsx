@@ -66,14 +66,17 @@ export default function Home() {
           </div>
         </header>
 
-        <div className="relative mb-8">
-          <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
-          <input
-            type="text"
-            placeholder="Cari nama bagian..."
-            className="w-full pl-14 pr-6 py-5 rounded-[2rem] border-0 shadow-lg shadow-blue-100 focus:ring-4 focus:ring-blue-200 outline-none transition-all bg-white text-blue-950 placeholder:text-blue-300"
-            onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
-          />
+        {/* Search Bar dengan efek sticky agar tidak hilang saat scroll */}
+        <div className="sticky top-4 z-20 mb-8">
+          <div className="relative shadow-lg shadow-blue-200 rounded-[2rem]">
+            <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
+            <input
+              type="text"
+              placeholder="Cari nama bagian..."
+              className="w-full pl-14 pr-6 py-5 rounded-[2rem] border-0 focus:ring-4 focus:ring-blue-300 outline-none transition-all bg-white text-blue-950 placeholder:text-blue-300"
+              onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
+            />
+          </div>
         </div>
 
         {loading ? <p className="text-center text-blue-400">Memuat data...</p> : (
@@ -89,7 +92,7 @@ export default function Home() {
           </div>
         )}
 
-        <div className="flex justify-center items-center gap-4 mt-10">
+        <div className="flex justify-center items-center gap-4 mt-10 pb-10">
           <button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} className="p-3 rounded-full bg-white shadow-md disabled:opacity-30 text-blue-600">
             <ChevronLeft size={20} />
           </button>
