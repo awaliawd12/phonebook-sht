@@ -35,7 +35,7 @@ export default function Home() {
             <Phone size={48} className="text-blue-600" />
           </div>
         </div>
-        <h1 className="text-3xl font-black mb-3 text-blue-950">Data Buku Telepon</h1>
+        <h1 className="text-xl font-black mb-3 text-blue-950">Data Buku Telepon</h1>
         <p className="text-blue-600 font-medium">Memuat data terbaru untuk Anda...</p>
         <Loader2 size={24} className="animate-spin text-blue-500 mt-8" />
       </main>
