@@ -42,7 +42,8 @@ export default function Home() {
           </div>
         </div>
         <h1 className="text-xl font-black text-blue-950">Data Buku Telepon</h1>
-        <p className="text-blue-600 font-bold tracking-[0.2em] uppercase mt-2">PLN INDONESIA POWER</p>
+        <p className="text-blue-600 font-bold tracking-[0.2em] uppercase mt-5">PLN INDONESIA POWER</p>
+        <p className="text-blue-600 font-bold tracking-[0.2em] uppercase">UBP MRICA</p>
         <Loader2 size={24} className="animate-spin text-blue-500 mt-8" />
       </main>
     );
@@ -57,7 +58,8 @@ export default function Home() {
             <img src="/logo.jpeg" alt="Logo PLN" className="w-10 h-10 object-contain" />
             <div className="flex flex-col">
               <span className="text-xs font-bold text-blue-200 tracking-wide uppercase">DATA BUKU TELEPON KANTOR</span>
-              <span className="text-lg font-black tracking-widest text-white uppercase">PLN INDONESIA POWER</span>
+              <span className="text-base font-black tracking-widest text-white uppercase mt-2">PLN INDONESIA POWER</span>
+              <span className="text-base font-black tracking-widest text-white uppercase">UBP MRICA</span>
             </div>
           </div>
         </header>
